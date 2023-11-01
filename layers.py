@@ -1,17 +1,22 @@
-# Custom L1 Distance layer module 
-# WHY DO WE NEED THIS: its needed to load the custom model
+# Custom L1 Distance Layer Module
 
 # Import dependencies
 import tensorflow as tf
 from tensorflow.keras.layers import Layer
 
-# Custom L1 Distance Layer from Jupyter 
 class L1Dist(Layer):
-    
-    # Init method - inheritance
     def __init__(self, **kwargs):
-        super().__init__()
-       
-    # Magic happens here - similarity calculation
+        super().__init()
+
     def call(self, input_embedding, validation_embedding):
+        """
+        Calculate L1 distance between input and validation embeddings.
+
+        Args:
+            input_embedding: The embedding to compare.
+            validation_embedding: The validation embedding to compare against.
+
+        Returns:
+            L1 distance (absolute difference) between the embeddings.
+        """
         return tf.math.abs(input_embedding - validation_embedding)
